@@ -1,0 +1,32 @@
+A. Target of je?
+
+4003fa: 74 02           je      XXXXXX
+4003fc: ff d0           callq   *%rax
+
+02 -> target is 4003fc + 02 = 4003fe
+
+
+B. Target of je?
+
+40042f: 74 f4           je      XXXXXX
+400431: 5d              pop     %rbp
+
+f4 -> target is 400431 - 0c = 400425
+
+
+C. Addresses?
+
+AXXXXX: 77 02           ja      400547
+BXXXXX: 5d              pop     %rbp
+
+400547 = BXXXXX + 02 -> BXXXXX = 400545
+AXXXXX = 400545 - 02 = 400543
+
+
+D. Target of jmpq?
+
+4005e8: e9 73 ff ff ff    jmpq   XXXXXXXX
+4005ed: 90                nop
+
+73 ff ff ff in LE -> ff ff ff 73 = 0 - 8d
+4005ed - 8d = 400560
