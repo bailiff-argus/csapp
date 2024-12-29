@@ -1,0 +1,40 @@
+A. 0x100: 30f3fcffffffffffffff4063000800000000000000
+
+                                        .pos 0x100
+0x100: 30 f3 fc ff ff ff ff ff ff ff :   irmovq $-4,  %rbx
+0x10A: 40 63 00 08 00 00 00 00 00 00 :   rmmovq %rsi, 0x800(%rbx)
+0x114: 00                            :   halt
+
+
+B. 0x200: a0 6f 80 0c 02 00 00 00 00 00 00 00 30 f3 0a 00 00 00 00 00 00 00
+
+                                       .pos 0x200
+0x200: a0 6f                         :   pushq  %rsi  
+0x202: 80 0c 02 00 00 00 00 00 00    :   call   0x20c
+0x20B: 00                            :   halt
+                                       0x20c:
+0x20C: 30 f3 0a 00 00 00 00 00 00 00 :   irmovq $10, %rbx
+
+
+C. 0x300: 50 54 07 00 00 00 00 00 00 00 10 f0 b0 1f
+
+                                       .pos 0x300
+0x300: 50 54 07 00 00 00 00 00 00 00 :   mrmovq 0x7(%rbp), %rsp
+0x30A: 10                            :   nop
+0x30B: f0                            :   ERROR no such instruction
+0x30C: b0 1f                         :   popq   %rcx
+
+
+D. 0x400: 61 13 73 00 04 00 00 00 00 00 00 00
+
+                                       .pos 0x400
+0x400: 61 13                         :   subq %rcx, %rbx
+0x402: 73 00 04 00 00 00 00 00 00    :   je   0x400
+0x40B: 00                            :   halt
+
+
+E. 0x500: 63 62 a0 f0
+
+                                       .pos 0x500
+0x500: 63 62                         :   xorq   %rsi, %rdx
+0x502: a0 f0                         :   ERROR pushq must have first half of second byte as the target register, and second half as F
